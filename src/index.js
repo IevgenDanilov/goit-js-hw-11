@@ -13,7 +13,7 @@ export const refs = {
   body: document.body,
 };
 
-let page = 0;
+let page = 1;
 
 // Оголошення функції очищення вмісту сторінки
 function clearPage () {
@@ -32,7 +32,7 @@ async function getImages(query) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
-        page: page+=1,
+        page,
         per_page: 40,
       },
     });
@@ -92,5 +92,6 @@ refs.loadMoreBtn.addEventListener(
 async function loadMoreHandler() {
 
   let imageTag = refs.searchQuery.value.trim();
+  page += 1;
   await renderGallery (imageTag);
 }
